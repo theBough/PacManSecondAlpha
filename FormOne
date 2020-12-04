@@ -1,0 +1,228 @@
+Public Class Form1
+    Dim animationCounter As Integer = 0
+    Dim direction As String = "down"
+    Dim grid(26, 29) As PictureBox
+    Dim xSpeed As Integer = 30
+    Dim ySpeed As Integer = 0
+
+    Dim walls(100) As Label
+    Dim wallIndex As Integer = -1
+
+    Private Sub btnStart_Click(sender As Object, e As EventArgs)
+
+        TManimation.Start()
+        makeDots()
+        pacManMover.Start()
+        Me.Focus()
+    End Sub
+    Private Sub TManimation_Tick(sender As Object, e As EventArgs) Handles TManimation.Tick
+        Select Case animationCounter
+            Case 1
+                Select Case direction
+                    Case "left"
+                        pacMan.Image = Image.FromFile(CurDir() & "\leftOne.png")
+                    Case "right"
+                        pacMan.Image = Image.FromFile(CurDir() & "\rightOne.png")
+                    Case "up"
+                        pacMan.Image = Image.FromFile(CurDir() & "\upOne.png")
+                    Case "down"
+                        pacMan.Image = Image.FromFile(CurDir() & "\downOne.png")
+                End Select
+               
+
+            Case 2
+                Select Case direction
+                    Case "left"
+                        pacMan.Image = Image.FromFile(CurDir() & "\leftTwo.png")
+                    Case "right"
+                        pacMan.Image = Image.FromFile(CurDir() & "\rightTwo.png")
+                    Case "up"
+                        pacMan.Image = Image.FromFile(CurDir() & "\upTwo.png")
+                    Case "down"
+                        pacMan.Image = Image.FromFile(CurDir() & "\downTwo.png")
+                End Select
+
+            Case 3
+                Select Case direction
+                    Case "left"
+                        pacMan.Image = Image.FromFile(CurDir() & "\leftOne.png")
+                    Case "right"
+                        pacMan.Image = Image.FromFile(CurDir() & "\rightOne.png")
+                    Case "up"
+                        pacMan.Image = Image.FromFile(CurDir() & "\upOne.png")
+                    Case "down"
+                        pacMan.Image = Image.FromFile(CurDir() & "\downOne.png")
+                End Select
+
+            Case 4
+                pacMan.Image = Image.FromFile(CurDir() & "\pmone.png")
+                animationCounter = 0
+        End Select
+        animationCounter += 1
+    End Sub
+    Private Sub Form1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
+        Select Case e.KeyChar
+            Case "a"
+                xSpeed = -30
+                ySpeed = 0
+                direction = "left"
+            Case "s"
+                xSpeed = 0
+                ySpeed = 30
+                direction = "down"
+            Case "d"
+                xSpeed = 30
+                ySpeed = 0
+                direction = "right"
+            Case "w"
+                xSpeed = 0
+                ySpeed = -30
+                direction = "up"
+        End Select
+    End Sub
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        makeDots()
+        makeAllTheWalls()
+        pacManMover.Start()
+        TManimation.Start()
+    End Sub
+    Sub makeDots()
+        For x = 0 To 25
+            For y = 0 To 28
+                grid(x, y) = New PictureBox
+                With grid(x, y)
+                    .Height = 5
+                    .Width = 5
+                    .Left = x * 30 + 30
+                    .Top = y * 30 + 30
+                    .Image = pacManDot.Image
+                    .SizeMode = PictureBoxSizeMode.StretchImage
+                End With
+                Me.Controls.Add(grid(x, y))
+                grid(x, y).BringToFront()
+            Next
+        Next
+    End Sub
+    Private Sub pacManMover_Tick(sender As Object, e As EventArgs) Handles pacManMover.Tick
+        pacMan.Left += xSpeed
+        pacMan.Top += ySpeed
+        collisionWithWalls()
+        collisionWithDots()
+    End Sub
+
+    'This sub will tak 4 inputs and draw
+    'rectangles and squares on the form.
+    Sub makeWall(w As Integer, h As Integer, x As Integer, y As Integer, col As Color)
+        wallIndex += 1
+        walls(wallIndex) = New Label
+        With walls(wallIndex)
+            .Height = h
+            .Width = w
+            .Top = y
+            .Left = x
+            .BackColor = col
+            .AutoSize = False
+            .Text = ""
+        End With
+        Me.Controls.Add(walls(wallIndex))
+        walls(wallIndex).BringToFront()
+    End Sub
+    Sub makeAllTheWalls()
+        'Roof
+        makeWall(840, 15, 0, 0, Color.Blue)
+        makeWall(836, 11, 2, 2, Color.Black)
+        'left wall
+        makeWall(15, 270, 0, 0, Color.Blue)
+        makeWall(11, 266, 2, 2, Color.Black)
+        'top left
+        makeWall(120, 90, 46, 46, Color.Blue)
+        makeWall(116, 86, 48, 48, Color.Black)
+        'Top row second in
+        makeWall(150, 90, 197, 45, Color.Blue)
+        makeWall(146, 86, 199, 47, Color.Black)
+        'top row middle
+        makeWall(30, 115, 376, 15, Color.Blue)
+        makeWall(26, 111, 378, 13, Color.Black)
+        'top row second from right
+        makeWall(150, 90, 436, 45, Color.Blue)
+        makeWall(146, 86, 438, 47, Color.Black)
+        'top row right corner
+        makeWall(120, 90, 616, 46, Color.Blue)
+        makeWall(116, 86, 618, 48, Color.Black)
+        'Second row pos1
+        makeWall(120, 30, 46, 166, Color.Blue)
+        makeWall(116, 26, 48, 168, Color.Black)
+        'second row pos2
+        makeWall(30, 180, 197, 166, Color.Blue)
+        makeWall(26, 176, 199, 168, Color.Black)
+        'second row pos3
+        makeWall(270, 30, 257, 166, Color.Blue)
+        makeWall(266, 26, 259, 168, Color.Black)
+        'second row pos 4
+        makeWall(30, 180, 557, 166, Color.Blue)
+        makeWall(26, 176, 559, 168, Color.Black)
+        'second row pos 5
+        makeWall(120, 30, 617, 166, Color.Blue)
+        makeWall(116, 26, 619, 168, Color.Black)
+        'Third Row Pos 1
+        makeWall(165, 30, 0, 226, Color.Blue)
+        makeWall(161, 26, 2, 228, Color.Black)
+        'right wall
+        makeWall(30, 270, 767, 0, Color.Blue)
+        makeWall(26, 266, 769, 2, Color.Black)
+        'Third Row pos 2
+        makeWall(150, 30, 197, 226, Color.Blue)
+        makeWall(146, 26, 199, 228, Color.Black)
+        'Third Row pos 3
+        makeWall(30, 90, 376, 166, Color.Blue)
+        makeWall(26, 86, 378, 168, Color.Black)
+        'Third Row pos 4
+        makeWall(150, 30, 436, 226, Color.Blue)
+        makeWall(146, 26, 438, 228, Color.Black)
+        'Third Row pos 5
+        makeWall(165, 30, 617, 226, Color.Blue)
+        makeWall(161, 26, 619, 228, Color.Black)
+        'fourth Row pos 1
+        makeWall(30, 120, 137, 226, Color.Blue)
+        makeWall(26, 122, 139, 228, Color.Black)
+        'fourth Row pos 2
+        makeWall(30, 120, 617, 226, Color.Blue)
+        makeWall(26, 122, 619, 228, Color.Black)
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
+        makeAllTheWalls()
+
+        Me.Focus()
+    End Sub
+    Sub collisionWithWalls()
+        For i = 0 To wallIndex
+            If pacMan.Bounds.IntersectsWith(walls(i).Bounds) Then
+                Select Case direction
+                    Case "up"
+                        ySpeed = 0
+                        pacMan.Top += 30
+                    Case "down"
+                        ySpeed = 0
+                        pacMan.Top -= 30
+                    Case "left"
+                        xSpeed = 0
+                        pacMan.Left += 30
+                    Case "right"
+                        xSpeed = 0
+                        pacMan.Left -= 30
+                End Select
+            End If
+        Next
+    End Sub
+    Sub collisionWithDots()
+        For x = 0 To 25
+            For y = 0 To 28
+                If pacMan.Bounds.IntersectsWith(grid(x, y).Bounds) Then
+                    grid(x, y).Hide()
+                End If
+            Next
+        Next
+    End Sub
+End Class
