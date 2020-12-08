@@ -207,18 +207,76 @@ Public Class Form1
         makeWall(266, 146, 259, 288, Color.Black)
         'fifth Row p 1
         makeWall(167, 30, 0, 316, Color.Blue)
-        makeWall(163, 26, 2, 318, Color.Black)
+
         'fifth Row p 2
         makeWall(180, 30, 617, 316, Color.Blue)
         makeWall(176, 26, 619, 318, Color.Black)
-        'Sixth Row pos 2
-        makeWall(30, 90, 197, 376, Color.Blue)
-        makeWall(26, 86, 199, 378, Color.Black)
+        
+        'black square
+        makeWall(120, 60, 5, 256, Color.Black)
+        makeWall(150, 60, 647, 256, Color.Black)
+        'Sixth Row pos 1
+        makeWall(167, 30, 0, 376, Color.Blue)
 
+        'Sixth Row pos 2
+        makeWall(30, 120, 197, 376, Color.Blue)
+        makeWall(26, 116, 199, 378, Color.Black)
+        'Sixth Row pos 3
+        makeWall(30, 120, 557, 376, Color.Blue)
+        makeWall(26, 116, 559, 378, Color.Black)
+        'Sixth Row pos 4
+        makeWall(180, 30, 617, 376, Color.Blue)
+
+        'seventh Row pos 1
+        makeWall(30, 120, 137, 376, Color.Blue)
+        makeWall(26, 116, 139, 378, Color.Black)
+        'seventh Row pos 2
+        makeWall(30, 120, 617, 376, Color.Blue)
+
+        'eighth Row po1
+        makeWall(167, 30, 0, 466, Color.Blue)
+
+        'eighth row pos2
+        makeWall(270, 30, 257, 466, Color.Blue)
+
+        'eighth Row po3
+        makeWall(180, 30, 617, 466, Color.Blue)
+        makeWall(176, 26, 619, 468, Color.Black)
+        'black square
+        makeWall(120, 60, 5, 406, Color.Black)
+        makeWall(150, 60, 647, 406, Color.Black)
+        'Ninth Row Pos 1
+        makeWall(15, 250, 0, 466, Color.Blue)
+        makeWall(11, 246, 2, 468, Color.Black)
+        'Ninth Row Pos 2
+        makeWall(30, 90, 376, 466, Color.Blue)
+        makeWall(26, 86, 378, 468, Color.Black)
+        'Ninth Row Pos 3
+        makeWall(30, 250, 767, 466, Color.Blue)
+        makeWall(26, 246, 769, 468, Color.Black)
+        'tenth Row Pos 1
+        makeWall(120, 30, 46, 526, Color.Blue)
+        makeWall(116, 26, 48, 528, Color.Black)
+        'tenth Row Pos 2
+        makeWall(150, 30, 197, 526, Color.Blue)
+        makeWall(146, 26, 199, 528, Color.Black)
+        'tenth Row Pos 3
+        makeWall(150, 30, 437, 526, Color.Blue)
+        makeWall(146, 26, 439, 528, Color.Black)
+        'tenth Row Pos 4
+        makeWall(120, 30, 617, 526, Color.Blue)
+        makeWall(116, 26, 619, 528, Color.Black)
         'All Clean ups
         makeWall(146, 26, 438, 228, Color.Black)
         makeWall(26, 100, 139, 228, Color.Black)
         makeWall(26, 100, 619, 228, Color.Black)
+        makeWall(163, 26, 2, 318, Color.Black)
+        makeWall(163, 26, 2, 378, Color.Black)
+        makeWall(176, 26, 619, 378, Color.Black)
+        makeWall(26, 116, 139, 378, Color.Black)
+        makeWall(26, 116, 619, 378, Color.Black)
+        makeWall(163, 26, 2, 468, Color.Black)
+        makeWall(266, 26, 259, 468, Color.Black)
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs)
