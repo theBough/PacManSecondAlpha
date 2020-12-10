@@ -8,6 +8,9 @@ Public Class Form1
     Dim walls(200) As Label
     Dim wallIndex As Integer = -1
 
+    Dim pinkXSpeed As Integer = -30
+    Dim pinkYSpeed As Integer = 0
+
     Private Sub btnStart_Click(sender As Object, e As EventArgs)
 
         TManimation.Start()
@@ -109,6 +112,13 @@ Public Class Form1
         pacMan.Top += ySpeed
         collisionWithWalls()
         collisionWithDots()
+        Me.Text = pacMan.Left & "     " & pacMan.Top
+        If pacMan.Left < 0 Then
+            pacMan.Left = 772
+        End If
+        If pacMan.Left > 772 Then
+            pacMan.Left = 22
+        End If
     End Sub
 
     'This sub will tak 4 inputs and draw
@@ -354,5 +364,10 @@ Public Class Form1
                 End If
             Next
         Next
+    End Sub
+
+    Private Sub pinkGhost_Tick(sender As Object, e As EventArgs) Handles pinkGhost.Tick
+        pinky.Left += pinkXSpeed
+        pinkYSpeed += pinkYSpeed
     End Sub
 End Class
