@@ -5,7 +5,7 @@ Public Class Form1
     Dim xSpeed As Integer = 0
     Dim ySpeed As Integer = 0
 
-    Dim walls(100) As Label
+    Dim walls(200) As Label
     Dim wallIndex As Integer = -1
 
     Private Sub btnStart_Click(sender As Object, e As EventArgs)
@@ -28,7 +28,7 @@ Public Class Form1
                     Case "down"
                         pacMan.Image = Image.FromFile(CurDir() & "\downOne.png")
                 End Select
-               
+
 
             Case 2
                 Select Case direction
@@ -89,7 +89,7 @@ Public Class Form1
     End Sub
     Sub makeDots()
         For x = 0 To 25
-            For y = 0 To 28
+            For y = 0 To 22
                 grid(x, y) = New PictureBox
                 With grid(x, y)
                     .Height = 5
@@ -211,7 +211,7 @@ Public Class Form1
         'fifth Row p 2
         makeWall(180, 30, 617, 316, Color.Blue)
         makeWall(176, 26, 619, 318, Color.Black)
-        
+
         'black square
         makeWall(120, 60, 5, 256, Color.Black)
         makeWall(150, 60, 647, 256, Color.Black)
@@ -241,22 +241,22 @@ Public Class Form1
 
         'eighth Row po3
         makeWall(180, 30, 617, 466, Color.Blue)
-        makeWall(176, 26, 619, 468, Color.Black)
+
         'black square
         makeWall(120, 60, 5, 406, Color.Black)
         makeWall(150, 60, 647, 406, Color.Black)
         'Ninth Row Pos 1
         makeWall(15, 250, 0, 466, Color.Blue)
-        makeWall(11, 246, 2, 468, Color.Black)
+
         'Ninth Row Pos 2
         makeWall(30, 90, 376, 466, Color.Blue)
         makeWall(26, 86, 378, 468, Color.Black)
         'Ninth Row Pos 3
         makeWall(30, 250, 767, 466, Color.Blue)
-        makeWall(26, 246, 769, 468, Color.Black)
+
         'tenth Row Pos 1
         makeWall(120, 30, 46, 526, Color.Blue)
-        makeWall(116, 26, 48, 528, Color.Black)
+
         'tenth Row Pos 2
         makeWall(150, 30, 197, 526, Color.Blue)
         makeWall(146, 26, 199, 528, Color.Black)
@@ -265,8 +265,49 @@ Public Class Form1
         makeWall(146, 26, 439, 528, Color.Black)
         'tenth Row Pos 4
         makeWall(120, 30, 617, 526, Color.Blue)
-        makeWall(116, 26, 619, 528, Color.Black)
+
+        'Eleventh Row Pos 1
+        makeWall(30, 90, 137, 526, Color.Blue)
+        makeWall(26, 86, 139, 528, Color.Black)
+        'Eleventh Row Pos 2
+        makeWall(30, 90, 617, 526, Color.Blue)
+
+        'twelth  Row Pos 1
+        makeWall(105, 30, 0, 586, Color.Blue)
+        makeWall(101, 26, 2, 588, Color.Black)
+        'twelth  Row Pos 2
+        makeWall(30, 90, 197, 586, Color.Blue)
+
+        'twelth  Row Pos 3
+        makeWall(270, 30, 257, 586, Color.Blue)
+
+        'twelth  Row Pos 4
+        makeWall(30, 90, 377, 586, Color.Blue)
+        makeWall(26, 86, 379, 588, Color.Black)
+        'twelth  Row Pos 5
+        makeWall(30, 90, 556, 586, Color.Blue)
+
+        'twelth  Row Pos 6
+        makeWall(120, 30, 676, 586, Color.Blue)
+        makeWall(116, 26, 678, 588, Color.Black)
+        'Thirteenth Row Pos 1
+        makeWall(300, 30, 47, 651, Color.Blue)
+        makeWall(296, 26, 49, 653, Color.Black)
+        'Thirteenth Row Pos 2
+        makeWall(300, 30, 436, 651, Color.Blue)
+        makeWall(296, 26, 438, 653, Color.Black)
+        'Floor
+        makeWall(797, 15, 0, 711, Color.Blue)
+        makeWall(793, 11, 2, 713, Color.Black)
         'All Clean ups
+        makeWall(176, 26, 619, 468, Color.Black)
+        makeWall(116, 26, 619, 528, Color.Black)
+        makeWall(26, 86, 619, 528, Color.Black)
+        makeWall(26, 86, 558, 588, Color.Black)
+        makeWall(26, 86, 199, 588, Color.Black)
+        makeWall(26, 246, 769, 468, Color.Black)
+        makeWall(266, 26, 259, 588, Color.Black)
+        makeWall(11, 246, 2, 468, Color.Black)
         makeWall(146, 26, 438, 228, Color.Black)
         makeWall(26, 100, 139, 228, Color.Black)
         makeWall(26, 100, 619, 228, Color.Black)
@@ -276,6 +317,7 @@ Public Class Form1
         makeWall(26, 116, 139, 378, Color.Black)
         makeWall(26, 116, 619, 378, Color.Black)
         makeWall(163, 26, 2, 468, Color.Black)
+        makeWall(116, 26, 48, 528, Color.Black)
         makeWall(266, 26, 259, 468, Color.Black)
     End Sub
 
@@ -306,7 +348,7 @@ Public Class Form1
     End Sub
     Sub collisionWithDots()
         For x = 0 To 25
-            For y = 0 To 28
+            For y = 0 To 22
                 If pacMan.Bounds.IntersectsWith(grid(x, y).Bounds) Then
                     grid(x, y).Hide()
                 End If
